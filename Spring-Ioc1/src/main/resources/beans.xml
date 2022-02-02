@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="mysqlImpl" class="com.He.dao.UserDaoMysqlImpl"></bean>
+    <bean id="oracleImpl" class="com.He.dao.UserDaoOracleImpl"></bean>
+    <bean id="userServiceImpl" class="com.He.service.UserServiceImpl">
+    <!-- ref: 引用Spring容器中创建好的对象
+         value: 具体的属性值
+    -->
+        <property name="userDao" ref="mysqlImpl"/>
+    </bean>
+</beans>

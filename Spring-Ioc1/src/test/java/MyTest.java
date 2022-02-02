@@ -1,6 +1,8 @@
 import com.He.dao.UserDaoMysqlImpl;
 import com.He.service.UserService;
 import com.He.service.UserServiceImpl;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * @author AmythistHe
@@ -10,10 +12,13 @@ import com.He.service.UserServiceImpl;
  */
 public class MyTest {
     public static void main(String[] args){
-        UserService userService = new UserServiceImpl();
-        // 用户动态传入对象，然后通过程序主动new对象，实现了控制反转(IOC)
-        // 不需要通过程序员new对象，解耦。
-        ((UserServiceImpl) userService).setUserDao(new UserDaoMysqlImpl());
-        userService.getUser();
+//        UserService userService = new UserServiceImpl();
+//        // 用户动态传入对象，然后通过程序主动new对象，实现了控制反转(IOC)
+//        // 不需要通过程序员new对象，解耦。
+//        ((UserServiceImpl) userService).setUserDao(new UserDaoMysqlImpl());
+//        userService.getUser();
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+        UserServiceImpl userServiceImpl = (UserServiceImpl) context.getBean("userServiceImpl");
+        userServiceImpl.getUser();
     }
 }
