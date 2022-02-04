@@ -7,4 +7,7 @@ package com.He.pojo;
  * @create 2022/2/3 18:59
  */
 public class Dog {
+    public void shout() {
+        System.out.println("dog");
+    }
 }

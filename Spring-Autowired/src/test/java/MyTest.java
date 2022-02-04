@@ -1,4 +1,5 @@
-import com.He.pojo.Hello;
+import com.He.pojo.People;
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -6,14 +7,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @author AmythistHe
  * @version 1.0
  * @description
- * @create 2022/2/2 14:45
+ * @create 2022/2/4 12:22
  */
 public class MyTest {
-    public static void main(String[] args){
-        // 获取Spring的上下文对象，使用Spring去管理bean。
+    @Test
+    public void test1() {
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-        // 从Spring容器中取出bean，并使用。
-        Hello hello = (Hello) context.getBean("hello");
-        System.out.println(hello.toString());
+        People people = context.getBean("people", People.class);
+        people.getDog().shout();
+        people.getCat().shout();
     }
 }
