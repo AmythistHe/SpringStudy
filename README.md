@@ -26,3 +26,12 @@ autowire="byType"用于在容器上下文中基于类型查找bean。
 - @Component有3个衍生注解，其中@Repository对应dao层，@Service对应service层，@Controller对应controller层。
 - @Scope注解用于设置bean的作用域，默认为singleton。
 - 注解使用简单，维护复杂；xml配置使用复杂，维护简单。
+
+### 6.Spring-AppConfig
+- @Configuration注解用于声明Bean的配置类，该类可以替代beans.xml文件。
+@Configuration注解中包含了@Component注解，即该注解也会将bean装配到Spring容器中。
+- @Bean注解相当于xml文件中的bean标签，该注解对应方法的名字，相当于bean标签的id；
+对应方法的返回值相当于bean标签的class。
+- 如果使用@Configuration注解替代bean.xml，则需要通过AnnotationConfigApplicationContext(config.class)
+获取容器上下文，并完成配置类class对象的装载。
+- @Import注解用于导入其它配置类。

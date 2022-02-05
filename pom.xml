@@ -15,6 +15,8 @@
         <module>Spring-Di</module>
         <module>Spring-Autowired</module>
         <module>Spring-annotation</module>
+        <module>Spring-AppConfig</module>
+        <module>Spring-Aop</module>
     </modules>
 
     <dependencies>
