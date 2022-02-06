@@ -17,6 +17,7 @@
         <module>Spring-annotation</module>
         <module>Spring-AppConfig</module>
         <module>Spring-Aop</module>
+        <module>Spring-Mybatis</module>
     </modules>
 
     <dependencies>

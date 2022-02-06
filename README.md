@@ -66,3 +66,11 @@ autowire="byType"用于在容器上下文中基于类型查找bean。
 ```
 - 方式3(使用注解实现)：编写log类，并通过@Aspect注解标注为切片类。然后再xml中通过<aop:aspectj-autoproxy/>开启AOP注解。
 最后在log类中通过@Before、@After等注解配置对应的方法。
+
+### Spring-Mybatis
+- 相关依赖：Junit、Mybatis、Mysql、Spring、AOP、Mybatis-Spring。
+- Mybatis使用流程：编写实体类、编写核心配置文件、编写接口、编写Mapper.xml、测试。
+- Lombok中的@Data注解等价于@ToString、@EqualsAndHashCode、@Getter、@Setter、@RequiredArgsConstructor。
+- Mybatis使用流程(基于Mybatis-Spring)：首先在xml文件中编写DataSource配置、sqlSessionFactory配置、sqlSessionTempLate(sqlSession)配置。
+然后为接口添加实现类，并基于sqlSessionTempLate为实现类配置bean。最后测试。此外，如果想省略sqlSessionTempLate配置，
+可以在接口的实现类中继承SqlSessionDaoSupport，并基于sqlSessionFactory为实现类配置bean。
