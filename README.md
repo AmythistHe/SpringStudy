@@ -35,3 +35,34 @@ autowire="byType"用于在容器上下文中基于类型查找bean。
 - 如果使用@Configuration注解替代bean.xml，则需要通过AnnotationConfigApplicationContext(config.class)
 获取容器上下文，并完成配置类class对象的装载。
 - @Import注解用于导入其它配置类。
+
+### 7.Spring-AOP
+- 方式1(使用原生Spring API接口)：编写log类，并实现对应的接口。然后在xml中通过pointcut配置切入点，
+并通过advisor配置需要在切入点执行的log类。
+```xml
+<!--配置AOP-->
+<aop:config>
+    <!--切入点-->
+    <aop:pointcut id="pointcut" expression="execution(* com.He.service.UserServiceImpl.*(..))"/>
+    <!--执行环绕增加-->
+    <aop:advisor advice-ref="log" pointcut-ref="pointcut"/>
+    <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut"/>
+</aop:config>
+```
+- 方式2(自定义类)：编写log类，然后在xml文件中通过aspect和自定义类ID配置切入面，通过pointcut配置切入点，
+最后通过before和after等标签配置log类中各个方法的执行位置。
+```xml
+<bean id="DIY" class="com.He.DIY.DIYPointCut"/>
+    <aop:config>
+        <!--自定义切面-->
+        <aop:aspect ref="DIY">
+            <!--切入点-->
+            <aop:pointcut id="pointcut2" expression="execution(* com.He.service.UserServiceImpl.*(..))"/>
+            <!--通知-->
+            <aop:before method="before" pointcut-ref="pointcut2"/>
+            <aop:after method="after" pointcut-ref="pointcut2"/>
+        </aop:aspect>
+    </aop:config>
+```
+- 方式3(使用注解实现)：编写log类，并通过@Aspect注解标注为切片类。然后再xml中通过<aop:aspectj-autoproxy/>开启AOP注解。
+最后在log类中通过@Before、@After等注解配置对应的方法。
