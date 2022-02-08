@@ -19,6 +19,7 @@
         <module>Spring-Aop</module>
         <module>Spring-Mybatis</module>
         <module>Spring-Transaction</module>
+        <module>Spring-Practice</module>
     </modules>
 
     <dependencies>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.He.dao.StudentDao">
+    <select id="selectStudent" resultType="student">
+        select *
+        from mysql.student;
+    </select>
+
+    <insert id="addStudent" parameterType="student">
+        insert into mysql.student (id, name, score) values (#{id}, #{name}, #{score});
+    </insert>
+
+    <delete id="deleteStudent" parameterType="int">
+        delete from mysql.student where id = #{id};
+    </delete>
+    
+    <update id="updateStudent">
+        update mysql.student set score = #{score} where id = #{id};
+    </update>
+</mapper>
