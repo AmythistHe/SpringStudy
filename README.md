@@ -74,3 +74,31 @@ autowire="byType"用于在容器上下文中基于类型查找bean。
 - Mybatis使用流程(基于Mybatis-Spring)：首先在xml文件中编写DataSource配置、sqlSessionFactory配置、sqlSessionTempLate(sqlSession)配置。
 然后为接口添加实现类，并基于sqlSessionTempLate为实现类配置bean。最后测试。此外，如果想省略sqlSessionTempLate配置，
 可以在接口的实现类中继承SqlSessionDaoSupport，并基于sqlSessionFactory为实现类配置bean。
+
+### Spring-Transaction
+- 事务配置(AOP)：在xml文件中通过DataSourceTransactionManager开启事务，然后配置事务的实现方法，最后通过AOP机制切入事务。
+```xml
+<!--开启声明式事务-->
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"/>
+</bean>
+
+<!--结合AOP实现事务-->
+<!--配置事务类-->
+<tx:advice id="txAdvice" transaction-manager="transactionManager">
+    <!--需要配置事务的方法-->
+    <tx:attributes>
+        <tx:method name="add" propagation="REQUIRED"/>
+        <tx:method name="delete" propagation="REQUIRED"/>
+        <tx:method name="update" propagation="REQUIRED"/>
+        <tx:method name="select" read-only="true"/> 
+    </tx:attributes>
+</tx:advice>
+
+<!--配置事务切入-->
+<aop:config>
+    <!--mapper下的所有类和方法都可以使用txAdvice事务-->
+    <aop:pointcut id="txPointCut" expression="execution(* com.He.mapper.*.*(..))"/>
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
+</aop:config>
+```

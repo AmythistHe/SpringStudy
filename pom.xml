@@ -18,6 +18,7 @@
         <module>Spring-AppConfig</module>
         <module>Spring-Aop</module>
         <module>Spring-Mybatis</module>
+        <module>Spring-Transaction</module>
     </modules>
 
     <dependencies>
