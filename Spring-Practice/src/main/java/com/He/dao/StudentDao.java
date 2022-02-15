@@ -18,5 +18,7 @@ public interface StudentDao {
 
     public int deleteStudent(@Param("id") int id);
 
+    public int deleteStudentByName(@Param("name") String name);
+
     public int updateStudent(@Param("id") int id, @Param("score") float score);
 }

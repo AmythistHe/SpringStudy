@@ -102,3 +102,4 @@ autowire="byType"用于在容器上下文中基于类型查找bean。
     <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
 </aop:config>
 ```
+- 使用Mybatis修改SQL表，必须提交事务才能生效。

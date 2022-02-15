@@ -15,6 +15,10 @@
     <delete id="deleteStudent" parameterType="int">
         delete from mysql.student where id = #{id};
     </delete>
+
+    <delete id="deleteStudentByName" parameterType="string">
+        delete from mysql.T_POLICYMODULE_POLICY where name = #{name}
+    </delete>
     
     <update id="updateStudent">
         update mysql.student set score = #{score} where id = #{id};

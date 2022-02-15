@@ -29,6 +29,11 @@ public class StudentDaoImpl extends SqlSessionDaoSupport implements StudentDao {
     }
 
     @Override
+    public int deleteStudentByName(String name) {
+        return getSqlSession().getMapper(StudentDao.class).deleteStudentByName(name);
+    }
+
+    @Override
     public int updateStudent(int id, float score) {
         return getSqlSession().getMapper(StudentDao.class).updateStudent(id, score);
     }
